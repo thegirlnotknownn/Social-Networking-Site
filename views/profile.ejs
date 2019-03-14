@@ -5,69 +5,37 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-
 	<title>YOUR PROFILE</title>
-
-	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
-
-	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
-	<!-- Owl Carousel -->
 	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
 	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
-
-	<!-- Magnific Popup -->
 	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
-
-	<!-- Font Awesome Icon -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
-
-	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
-	
 </head>
-
 <body>
-
-	<!-- Header -->
 	<header>
-
-		<!-- Nav -->
 		<nav id="nav" class="navbar">
 			<div class="container">
-
 				<div class="navbar-header">
-					<!-- Logo -->
 					<div class="navbar-brand">
 						<a href="/registration">
 							<img class="logo" src="img/logo.png" alt="logo">
 						</a>
 					</div>
-					<!-- /Logo -->
-
-					<!-- Collapse nav button -->
 					<div class="nav-collapse">
 						<span></span>
 					</div>
-					<!-- /Collapse nav button -->
 				</div>
-
-				<!--  Main navigation  -->
 				<ul class="main-nav nav navbar-nav navbar-right">
 					<li><a href="/">Welcome!</a></li>
 					<li><a href="/registration">About</a></li>
 					<li><a href="/contact">ContactUS</a></li>
 				</ul>
-				<!-- /Main navigation -->
 			</div>
 		</nav>
-		<!-- /Nav -->
-
-		<!-- header wrapper -->
 		<div class="header-wrapper sm-padding bg-grey">
 			<div class="container">
 				<h2>Profile Page</h2>
@@ -78,31 +46,17 @@
 				</ul>
 			</div>
 		</div>
-		<!-- /header wrapper -->
-
 	</header>
-	<!-- /Header -->
 	<p>Search your friends out... JUST ENTER THEIR USERNAMES</p>
-
-					<!-- Search -->
-					<form method="post" action="/dummyprofile">
-						<div class="widget-search">
-							<input class="search-input" name="username" type="text" placeholder="search the world..">
-							<button class="search-btn" type="submit">search</button>
-						</div>
-					</form>
-					<!-- /Search -->
-
-	<!-- Blog -->
+	<form method="post" action="/dummyprofile">
+		<div class="widget-search">
+			<input class="search-input" name="username" type="text" placeholder="search the world..">
+			<button class="search-btn" type="submit">search</button>
+		</div>
+	</form>
 	<div id="blog" class="section md-padding">
-
-		<!-- Container -->
 		<div class="container">
-
-			<!-- Row -->
 			<div class="row">
-
-				<!-- Main -->
 				<main id="main" class="col-md-9">
 					<div class="blog">
 						<div class="blog-img">
@@ -111,12 +65,11 @@
 							<%user.path = rr.join(" ");%>
 							<img class="img-responsive" src="<%=user.path%>" alt="myimage" style="width:100%; height:370px">
 						</div><br>
-						<!-- blog author -->
 						<div class="blog-author">
 							<div class="media">
-								<div class="media-left">
+								<!-- <div class="media-left"> -->
 									<!-- <img class="media-object" src="<%= user.path%>" alt=""> -->
-								</div>
+								<!-- </div> -->
 								<div class="media-body">
 									<div class="media-heading">
 										<h3><%=user.name%></h3>
@@ -131,34 +84,18 @@
 								</div>
 							</div>
 						</div>
-						<!-- /blog author -->
-
 						<div>
 							<button><a href="/profile/editdata">eDIT yOUr InFo!</a></button>
 						</div>
-
-
 					</div>
 				</main>
-				<!-- /Main -->
-
 			</div>
-			<!-- /Row -->
-
 		</div>
-		<!-- /Container -->
-
 	</div>
-	<!-- /Blog -->
-
-
-	<!-- jQuery Plugins -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>/
-
 </body>
-
 </html>

@@ -35,14 +35,6 @@ router.get('/', function(req, res){
     });
 });
 
-router.get('/',function(req,res){
-	res.render('logout');
-});
-
-router.get('/forgot',function(req,res){
-    res.render('forgot');
-});
-
 router.get('/reset',function(req,res){
 	res.render('reset');
 });
@@ -50,12 +42,11 @@ router.get('/reset',function(req,res){
 router.post('/reset',function(req,res){
     var email= req.body.email;
     var password= req.body.password;
-    console.log("here");
     User.findOneAndUpdate({email:email},{password:password},function(err,user){
         if (err) return console.log(err)
-        console.log(user);
+        // console.log(user);
     });
-    console.log("password changed");
+    // console.log("password changed");
     res.redirect('/registration/signin');
 });
 
@@ -74,7 +65,6 @@ passport.use(new LocalStrategy(
 			if (!user) {
 				return done(null, false, { message: 'Unknown User' });
 			}
-
 			User.comparePassword(password, user.password, function (err, isMatch) {
 				if (err) throw err;
 				if (isMatch) {
@@ -109,7 +99,6 @@ router.post('/signup',upload.single('avatar'), function (req, res) {
     var bio = req.body.bio;
     var path = req.file.path;
     // var originalname = req.file.originalname;
-    console.log("here?");
 	// Validation
     req.checkBody('name', 'Name is required').notEmpty();
     req.checkBody('contact','Contact Detail is required').notEmpty();
@@ -120,15 +109,14 @@ router.post('/signup',upload.single('avatar'), function (req, res) {
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
 	var errors = req.validationErrors();
-	console.log("checking errors");
 	if (errors) {
 		res.render('signup', {
 			errors: errors
 		});
-		res.send("error! maybe use used username or email");
+		// res.send("error! maybe use used username or email");
 	}
 	else {
-		//checking for email and username are already taken
+		//checking for email and username if are already taken
 		User.findOne({ username: { 
 			"$regex": "^" + username + "\\b", "$options": "i"
 	}}, function (err, user) {
@@ -142,25 +130,22 @@ router.post('/signup',upload.single('avatar'), function (req, res) {
 					});
 				}
 				else {
-					console.log("checked errors!");
 					var newUser = new User({
 						path:path,
 						// originalname:originalname,
 						name: name,
                         email: email,
-                        dob:dob, //chevkrhis
-                        gender:gender,//dropdownlist
+                        dob:dob,
+                        gender:gender,
                         contact:contact,
 						username: username,
 						password: password,
 						bio:bio
 					});
-					console.log("stored?")
 					User.createUser(newUser, function (err, user) {
 						if (err) throw err;
-						console.log(user);
+						// console.log(user);
 					});
-					console.log("herE?3");
          			req.flash('success_msg', 'You are registered and can now login');
 					res.redirect('/registration/signin');
 				}
@@ -170,32 +155,28 @@ router.post('/signup',upload.single('avatar'), function (req, res) {
 });
 
 router.post('/signin', passport.authenticate('local', { successRedirect: '/profile', failureRedirect: '/registration/signin', failureFlash: true }),function (req, res) {
-		console.log("here?");
 	res.redirect('/registration/signin');
 });
 
 router.get('/forgot', function(req,res){
-    res.render('forgot');
-    // res.render('forgot',{
-        // user : req.user
-    // });
+    res.render('forgot',{
+        user : req.user
+    });
 });
 
-// you can make one more page for logout! you wish if free
 router.get('/logout', function (req, res) {
 	req.logout();
 	res.render('logout');
 });
 
 // ***************************************************************************************************************
-// MAILS HAVE BEEN SENT ...tokens kahaa hai?
+// ADD TOKENS TO THEM RE
 // _______________________________________________________________________________
-// can add more feature by using tokens and stuff
 router.post('/forgot',function(req,res){
     var email = req.body.email;
     User.findOne({email:email},function(err,user){
         // ḍo something to check emial exists in the database
-        if(err) return console.log("email>>>>>>>>>>>>>>>>>>>>>>" + err)
+        if(err) return console.log(err)
             var transporter = nodemailer.createTransport({
                 service : 'gmail',
                 auth : {
@@ -215,14 +196,10 @@ router.post('/forgot',function(req,res){
             };
             transporter.sendMail(mailOptions, function(err,info){
                 if(err) return console.log(err)
-                console.log(info);
-                console.log("yeh to aaya");
+                // console.log(info);
             });
     });
     res.redirect('https://www.gmail.com');
 });
 
-router.post('/reset',function(req,res){
-
-})
 module.exports = router;

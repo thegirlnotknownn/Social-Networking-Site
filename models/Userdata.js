@@ -19,8 +19,6 @@ var userSchema = new Schema({
     originalname:String,
     gender:String,
     bio:String
-    // currentuser:String,
-    // lastwords: String
 },{collection:'userdata'});
 var User = mongoose.model("User",userSchema);
 

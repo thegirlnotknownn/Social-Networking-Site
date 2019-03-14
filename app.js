@@ -6,7 +6,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
-// var methodOverride = require('method-override'); // used for using put or delete methods where client doesnt support it
 var mongo = require('mongodb');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -35,11 +34,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-// app.use(bodyParser.urlencoded({extended:true}));//whyy
 
-//set static folder(root directory)
 app.use(express.static(__dirname+'/public'));
-// app.use(methodOverride('_method'));dunnooooo
 
 // Express Session
 app.use(session({
@@ -96,7 +92,5 @@ var server = http.createServer(app);
 server.listen(port);
 
 
-// var server = app.listen(4444);
 console.log('Server up and running on port 4444!');
-
 module.exports = app;
